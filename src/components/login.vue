@@ -17,7 +17,13 @@ export default {
     methods: {
         login() {
             // 获取已有账号密码
-            this.$http.get('/api/login/getAccount')
+            this.$http.get('/api/checklogin', { params: { account: this.account, password: this.password } })
+                .then((res) => {
+                    console.log(res);
+                }).catch((reject) => {
+                    console.log(reject);
+                });
+            /*this.$http.get('/api/login/getAccount')
                 .then((response) => {
                     // 响应成功回调
                     console.log(response)
@@ -33,7 +39,7 @@ export default {
                 })
                 .catch((reject) => {
                     console.log(reject)
-                });
+                });*/
         }
     }
 }
