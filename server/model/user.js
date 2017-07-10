@@ -8,12 +8,14 @@ class User {
 
   static check(username, password, callback) {
     db.connect().then(pool => {
-      return pool.query `select 1 from Sys_UserInfo where UserName=${username} and Password=${password}`
+      return pool.query `select NameCN,UnitName from Sys_UserInfo where UserName=${username} and Password=${password}`
     }).then(result => {
       db.close();
       if (result.recordset.length > 0) {
         callback(null, {
-          IsUser: 1
+          IsUser: 1,
+          NameCN: result.recordset[0].NameCN,
+          UnitName: result.recordset[0].UnitName
         });
       } else {
         callback(null, {

@@ -1,5 +1,5 @@
 const db = require('mssql');
-
+//需打开sql server browser服务 
 const config = {
   user: 'sa',
   password: 'sa',
