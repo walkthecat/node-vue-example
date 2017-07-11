@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import HomeHeader from '@/components/homeheader.vue'
-import HomeFooter from '@/components/homefooter.vue'
+import HomeHeader from '@/components/homeheader'
+import HomeFooter from '@/components/homefooter'
 
 export default {
     data() {
@@ -78,7 +78,6 @@ export default {
         getLocalStorage() {
             const storage = window.localStorage;
             if (storage.User) {
-                console.log($('#isRemember').prop('checked'));
                 this.account = storage.User;
                 $('#isRemember').prop('checked', true);
             }
