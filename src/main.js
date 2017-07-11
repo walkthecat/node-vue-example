@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import './assets/css/bootstrap.min.css'
-import './assets/js/bootstrap.min.js'
+import './assets/js/bootstrap.min'
 Vue.use(VueResource)
 
 Vue.config.productionTip = false

@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import HomeHeader from './homeheader.vue'
-import HomeFooter from './homefooter.vue'
+import HomeHeader from '@/components/homeheader.vue'
+import HomeFooter from '@/components/homefooter.vue'
 
 export default {
     data() {
