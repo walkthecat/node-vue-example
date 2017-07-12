@@ -35,6 +35,14 @@ class User {
         IsUser: 0
       });
     });
+
+    db.on('error', err => {
+      console.log(err);
+      db.close();
+      callback(err, {
+        IsUser: 0
+      });
+    })
   }
 
   static isExist(username, callback) {
@@ -60,6 +68,14 @@ class User {
         IsUser: 0
       });
     });
+
+    db.on('error', err => {
+      console.log(err);
+      db.close();
+      callback(err, {
+        IsUser: 0
+      });
+    })
   }
 
   static check(username, password, callback) {
@@ -89,6 +105,14 @@ class User {
         IsUser: 0
       });
     });
+
+    db.on('error', err => {
+      console.log(err);
+      db.close();
+      callback(err, {
+        IsUser: 0
+      });
+    })
   }
 }
 

@@ -19,6 +19,13 @@ export default new Router({
       }
     },
     {
+      path: '/table',
+      component: resolve => require(['@/page/table'], resolve),
+      meta: {
+        title: 'table'
+      }
+    },
+    {
       path: '/reg',
       name: 'register',
       component: Reg

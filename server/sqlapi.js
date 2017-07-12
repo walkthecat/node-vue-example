@@ -1,4 +1,5 @@
 const User = require('./model/user');
+const Table = require('./model/table')
 const express = require('express');
 const router = express.Router();
 const crypto = require('crypto');
@@ -55,6 +56,19 @@ router.post('/api/reg', (req, res) => {
     res.end(JSON.stringify(data));
   });
 });
+
+router.get('/api/table', (req, res) => {
+  Table.getTable(parseInt(req.query.pageNum), parseInt(req.query.pageSize), (err, data) => {
+    if (err) {
+      res.send('error');
+      return;
+    }
+    res.writeHead(200, {
+      'Content-Type': 'application/json'
+    });
+    res.end(JSON.stringify(data));
+  })
+})
 
 function isUserExist(req, res, next) {
   User.isExist(req.body.account, (err, data) => {

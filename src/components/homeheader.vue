@@ -39,6 +39,9 @@ export default {
                 name: '注册',
                 path: '/reg'
             },{
+                name: '表格',
+                path: '/table'
+            },{
                 name: '图片',
                 path: '/pic'
             }]
