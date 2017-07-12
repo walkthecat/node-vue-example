@@ -77,18 +77,23 @@ export default {
     },
     methods: {
         checkUserName() {
-            this.$http.get('/api/user', { params: { account: this.account } })
-                .then((res) => {
-                    console.log(res);
-                    const isUser = res.body.IsUser;
-                    if (!!isUser) {
-                        this.showErr('txtaccount', '用户已存在', true);
-                    } else {
-                        this.showErr('txtaccount', '', false);
-                    }
-                }).catch((reject) => {
-                    console.log(reject);
-                });
+            let value = this.account
+            setTimeout(() => {
+                if (this.account == value) {
+                    this.$http.get('/api/user', { params: { account: this.account } })
+                        .then((res) => {
+                            console.log(res);
+                            const isUser = res.body.IsUser;
+                            if (!!isUser) {
+                                this.showErr('txtaccount', '用户已存在', true);
+                            } else {
+                                this.showErr('txtaccount', '', false);
+                            }
+                        }).catch((reject) => {
+                            console.log(reject);
+                        });
+                }
+            }, 1000);
         },
         checkPsw() {
             if (this.password != this.repassword) {

@@ -34,6 +34,7 @@ router.get('/api/user', (req, res) => {
   })
 });
 
+router.post('/api/reg', isUserExist);
 router.post('/api/reg', (req, res) => {
   let md5 = crypto.createHash('md5');
   let password = md5.update(req.body.password).digest('hex');
@@ -54,5 +55,23 @@ router.post('/api/reg', (req, res) => {
     res.end(JSON.stringify(data));
   });
 });
+
+function isUserExist(req, res, next) {
+  User.isExist(req.body.account, (err, data) => {
+    if (err) {
+      res.send('error');
+      return;
+    }
+    if (!!data.IsUser) {
+      res.writeHead(200, {
+        'Content-Type': 'application/json'
+      });
+      data.IsUser = 0;
+      res.end(JSON.stringify(data));
+    } else {
+      next();
+    }
+  })
+}
 
 module.exports = router;
