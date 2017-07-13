@@ -42,6 +42,9 @@ export default {
                 name: '表格',
                 path: '/table'
             },{
+                name: '盒模型',
+                path: '/box'
+            },{
                 name: '图片',
                 path: '/pic'
             }]

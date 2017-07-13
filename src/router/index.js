@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/page/login'
 import Reg from '@/page/register'
+import Box from '@/page/box'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       meta: {
         title: 'table'
       }
+    },
+    {
+      path: '/box',
+      name: 'box',
+      component: Box
     },
     {
       path: '/reg',
