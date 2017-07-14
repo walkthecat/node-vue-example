@@ -2,6 +2,7 @@
     <section>
         <home-header></home-header>
         <div class="container">
+            <!-- 旧版盒模型 -->
             <div id="box">
                 <div style="background:red">left</div>
                 <div style="background:green">center</div>
@@ -20,6 +21,10 @@
                 <div class="div2" style="background-color: red">div2</div>
             </div>
             <br>
+
+            <!-- 新版盒模型 -->
+            <!-- 父元素使用display:flex;flex-flow:row -->
+            <!-- 子元素flex:1 1 20% 三个属性的意思为1.剩余空间的扩展比例;2.溢出空间后的收缩比例;3.伸缩基准值同width -->
             <div class="flex">
                 <div>uno</div>
                 <div>due</div>

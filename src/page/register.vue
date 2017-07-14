@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label for="txtaccount" class="col-xs-4 col-md-2 control-label">账号：</label>
                         <div class="col-xs-8 col-md-4">
-                            <input class="form-control" id="txtaccount" placeholder="请输入账号" v-model="account" v-on:input="checkUserName">
+                            <input class="form-control" id="txtaccount" placeholder="请输入账号" v-model="account">
                         </div>
                     </div>
                     <div class="form-group">
@@ -75,8 +75,12 @@ export default {
         HomeHeader,
         HomeFooter
     },
+    watch: {
+        account: 'checkUserName'
+    },
     methods: {
         checkUserName() {
+            if (this.account.trim() == "") return
             let value = this.account
             setTimeout(() => {
                 if (this.account == value) {
