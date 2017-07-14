@@ -22,13 +22,13 @@ exports.cssLoaders = function (options) {
   postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: true
     }
   }
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    var loaders = [cssLoader, postcssLoader]
+    var loaders = [cssLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',

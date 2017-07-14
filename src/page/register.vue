@@ -1,12 +1,12 @@
 <template>
     <section>
         <home-header></home-header>
-        <form class="container form-horizontal">
-            <div class="alert alert-danger alert-dismissible hidden" role="alert">
+        <form class="container form-horizontal" @submit="register">
+            <div class="alert alert-danger alert-dismissible" v-show="tips" role="alert">
                 {{ tips }}
             </div>
             <div class="well">
-                <div class="register">
+                <div v-if="switchReg">
                     <div class="form-group">
                         <label for="txtaccount" class="col-xs-4 col-md-2 control-label">账号：</label>
                         <div class="col-xs-8 col-md-4">
@@ -39,12 +39,12 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-4 col-md-offset-2 col-xs-8 col-md-10">
-                            <button type="button" class="btn btn-primary" @click="register">注册</button>
+                            <button type="submit" class="btn btn-primary">注册</button>
                             <button type="reset" class="btn btn-default">重置</button>
                         </div>
                     </div>
                 </div>
-                <div class="registered hidden">
+                <div v-else>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             感谢您注册！
@@ -68,7 +68,8 @@ export default {
             repassword: '',
             tips: '',
             nameCN: '',
-            unitName: ''
+            unitName: '',
+            switchReg: true
         }
     },
     components: {
@@ -79,11 +80,10 @@ export default {
         account: 'checkUserName'
     },
     methods: {
-        checkUserName() {
-            if (this.account.trim() == "") return
-            let value = this.account
+        checkUserName(newVal, oldVal) {
+            if (newVal == "") return
             setTimeout(() => {
-                if (this.account == value) {
+                if (this.account == newVal) {
                     this.$http.get('/api/user', { params: { account: this.account } })
                         .then((res) => {
                             console.log(res);
@@ -111,12 +111,10 @@ export default {
             if (isShow) {
                 $('#' + id).parent().parent().addClass('has-error');
                 this.tips = tip;
-                $('.alert').removeClass('hidden');
             }
             else {
                 $('#' + id).parent().parent().removeClass('has-error')
                 this.tips = '';
-                $('.alert').addClass('hidden');
             }
         },
         register() {
@@ -125,11 +123,9 @@ export default {
                     console.log(res);
                     const isUser = res.body.IsUser;
                     if (!!isUser) {
-                        $('.register').addClass('hidden');
-                        $('.registered').removeClass('hidden');
+                        this.switchReg = false
                     } else {
                         this.tips = '账户已存在';
-                        $('.alert').removeClass('hidden');
                     }
                 }).catch((reject) => {
                     console.log(reject);
