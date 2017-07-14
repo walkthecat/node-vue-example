@@ -237,4 +237,8 @@ footer {
         max-height: 50px;
     }
 }
+
+:fullscreen a {
+    display: flex
+}
 </style>
