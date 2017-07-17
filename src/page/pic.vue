@@ -1,6 +1,6 @@
 <template>
     <section>
-        <home-header></home-header>
+        <home-header menu='/pic'></home-header>
         <div class="container">
         <div class="row">
             <div class="col-xs-6 col-md-3">

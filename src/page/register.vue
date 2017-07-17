@@ -1,6 +1,6 @@
 <template>
     <section>
-        <home-header></home-header>
+        <home-header menu="/reg"></home-header>
         <form class="container form-horizontal" @submit.prevent="register">
             <div class="alert alert-danger alert-dismissible" v-show="tips.length" role="alert">
                 <ul>

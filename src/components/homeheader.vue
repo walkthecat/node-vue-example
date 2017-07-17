@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav v-once class="navbar navbar-default navbar-static-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -15,7 +15,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li v-for="(item,index) in menus" :key="index" :class="[index == menuIndex ? 'active' : '']" @click="setMenuIndex(index)">
+                    <li v-for="(item,index) in menus" :key="index" :class="[menu == item.path ? 'active' : '']">
                         <router-link :to="item.path">{{item.name}}
                         </router-link>
                     </li>
@@ -38,20 +38,21 @@ export default {
             }, {
                 name: '注册',
                 path: '/reg'
-            },{
+            }, {
                 name: '表格',
                 path: '/table'
-            },{
+            }, {
                 name: '盒模型',
                 path: '/box'
-            },{
+            }, {
                 name: '图片',
                 path: '/pic'
             }]
         }
     },
+    props: ['menu'],
     mounted() {
-        this.setMenuIndexByArray()
+        //this.setMenuIndexByArray()
     },
     methods: {
         setMenuIndexByArray() {

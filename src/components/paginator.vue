@@ -2,27 +2,27 @@
     <nav aria-label="...">
         <ul class="pagination">
             <li :class="[ isFirstPage ? 'disabled':'' ]">
-                <a @click="getData(1)" aria-label="Previous">
+                <a @click="[ isFirstPage ? '' : getData(1)]" aria-label="First">
                     <span aria-hidden="true">首页</span>
                 </a>
             </li>
             <li :class="[ isFirstPage ? 'disabled':'' ]">
-                <a @click="getData(currentPage-1)"  aria-label="Previous">
+                <a @click="[ isFirstPage ? '' : getData(currentPage-1)]"  aria-label="Previous">
                     <span aria-hidden="true">&lt; 上一页</span>
                 </a>
             </li>
             <li v-for="(item,index) in showNum" :key="index" :class="[ item == currentPage ? 'active' : '']">
                 <a @click="getData(item)">{{item}}
-                    <span class="sr-only">(current)</span>
+                    <!-- <span class="sr-only">(current)</span> -->
                 </a>
             </li>
             <li :class="[ isLastPage ? 'disabled':'' ]">
-                <a @click="getData(currentPage+1)" aria-label="Previous">
+                <a @click="[ isLastPage ? '' :getData(currentPage+1)]" aria-label="Next">
                     <span aria-hidden="true">下一页 &gt;</span>
                 </a>
             </li>
             <li :class="[ isLastPage ? 'disabled':'' ]">
-                <a @click="getData(totalPage)" aria-label="Previous">
+                <a @click="[ isLastPage ? '' : getData(totalPage)]" aria-label="Last">
                     <span aria-hidden="true">尾页</span>
                 </a>
             </li>
@@ -60,8 +60,8 @@ export default {
 </script>
 
 <style scoped>
-.disabled
+/* .disabled
 { 
     pointer-events: none;
-}
+} */
 </style>

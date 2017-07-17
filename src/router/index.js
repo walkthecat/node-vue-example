@@ -14,7 +14,7 @@ export default new Router({
     },
     {
       path: '/pic',
-      component: resolve => require(['@/page/pic'], resolve),
+      component: resolve => require(['@/page/pic'], resolve),//等同于 () => import('@/page/pic'),
       meta: {
         title: 'picture'
       }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <home-header></home-header>
+        <home-header menu='/'></home-header>
         <section class="container form-horizontal">
             <div class="alert alert-danger alert-dismissible hidden" role="alert">
                 <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">

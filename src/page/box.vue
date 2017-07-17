@@ -1,6 +1,6 @@
 <template>
     <section>
-        <home-header></home-header>
+        <home-header menu="/box"></home-header>
         <div class="container">
             <!-- 旧版盒模型 -->
             <div id="box">

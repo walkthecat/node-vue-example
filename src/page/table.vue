@@ -1,6 +1,6 @@
 <template>
     <section>
-        <home-header></home-header>
+        <home-header menu="/table"></home-header>
         <div class="table-responsive container">
             <table class="table table-hover">
                 <thead>
