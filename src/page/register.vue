@@ -2,8 +2,10 @@
     <section>
         <home-header></home-header>
         <form class="container form-horizontal" @submit="register">
-            <div class="alert alert-danger alert-dismissible" v-show="tips" role="alert">
-                {{ tips }}
+            <div class="alert alert-danger alert-dismissible" v-show="tips.length" role="alert">
+                <ul>
+                    <li v-for="(item,index) in tips" :key="index">{{ item.message }}</li>
+                </ul>
             </div>
             <div class="well">
                 <div v-if="switchReg">
@@ -66,7 +68,7 @@ export default {
             account: '',
             password: '',
             repassword: '',
-            tips: '',
+            tips: [],
             nameCN: '',
             unitName: '',
             switchReg: true
@@ -110,11 +112,12 @@ export default {
         showErr(id, tip, isShow) {
             if (isShow) {
                 $('#' + id).parent().parent().addClass('has-error');
-                this.tips = tip;
+                this.tips.push({ id: id, message: tip });
             }
             else {
                 $('#' + id).parent().parent().removeClass('has-error')
-                this.tips = '';
+                let indx = this.tips.findIndex((value) => { return value.id == id })
+                this.tips.splice(indx, 1)
             }
         },
         register() {
@@ -125,7 +128,7 @@ export default {
                     if (!!isUser) {
                         this.switchReg = false
                     } else {
-                        this.tips = '账户已存在';
+                        this.tips.push({ id: 'return', message: '账户已存在' })
                     }
                 }).catch((reject) => {
                     console.log(reject);
