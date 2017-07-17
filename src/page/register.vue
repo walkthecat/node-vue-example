@@ -1,7 +1,7 @@
 <template>
     <section>
         <home-header></home-header>
-        <form class="container form-horizontal" @submit="register">
+        <form class="container form-horizontal" @submit.prevent="register">
             <div class="alert alert-danger alert-dismissible" v-show="tips.length" role="alert">
                 <ul>
                     <li v-for="(item,index) in tips" :key="index">{{ item.message }}</li>
@@ -88,50 +88,56 @@ export default {
                 if (this.account == newVal) {
                     this.$http.get('/api/user', { params: { account: this.account } })
                         .then((res) => {
-                            console.log(res);
-                            const isUser = res.body.IsUser;
+                            console.log(res)
+                            const isUser = res.body.IsUser
                             if (!!isUser) {
-                                this.showErr('txtaccount', '用户已存在', true);
+                                this.showErr('txtaccount', '用户已存在', true)
                             } else {
-                                this.showErr('txtaccount', '', false);
+                                this.showErr('txtaccount', '', false)
                             }
                         }).catch((reject) => {
-                            console.log(reject);
+                            console.log(reject)
                         });
                 }
             }, 1000);
         },
         checkPsw() {
             if (this.password != this.repassword) {
-                this.showErr('txtrepeatpassword', '两次密码不一致', true);
+                this.showErr('txtrepeatpassword', '两次密码不一致', true)
             }
             else {
-                this.showErr('txtrepeatpassword', '', false);
+                this.showErr('txtrepeatpassword', '', false)
             }
         },
         showErr(id, tip, isShow) {
+            let indx = this.tips.findIndex((value) => { return value.id == id })
             if (isShow) {
-                $('#' + id).parent().parent().addClass('has-error');
-                this.tips.push({ id: id, message: tip });
+                if (indx == -1) {
+                    $('#' + id).parent().parent().addClass('has-error')
+                    this.tips.push({ id: id, message: tip })
+                }
             }
             else {
                 $('#' + id).parent().parent().removeClass('has-error')
-                let indx = this.tips.findIndex((value) => { return value.id == id })
-                this.tips.splice(indx, 1)
+                this.tips = this.tips.filter((item) => {
+                    return item.id != id
+                })
+                //let indx = this.tips.findIndex((value) => { return value.id == id })
+                //this.tips.splice(indx, 1)
             }
         },
         register() {
             this.$http.post('/api/reg', { account: this.account, password: this.password, nameCN: this.nameCN, unitName: this.unitName })
                 .then((res) => {
-                    console.log(res);
-                    const isUser = res.body.IsUser;
+                    console.log(res)
+                    const isUser = res.body.IsUser
                     if (!!isUser) {
                         this.switchReg = false
                     } else {
                         this.tips.push({ id: 'return', message: '账户已存在' })
                     }
                 }).catch((reject) => {
-                    console.log(reject);
+                    console.log(reject)
                 });
         }
     }
