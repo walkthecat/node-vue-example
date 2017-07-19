@@ -33,3 +33,6 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 注意：
 
     开发环境config/index.js内的proxyTable设定
+
+测试：
+[test](index.html)
